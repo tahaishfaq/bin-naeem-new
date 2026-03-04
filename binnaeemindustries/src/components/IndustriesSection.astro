@@ -1,0 +1,47 @@
+---
+const industries = [
+  {
+    title: "Industrial Manufacturing",
+    description: "Implementing advanced production techniques for scalable growth.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
+  },
+  {
+    title: "Packaging & Logistics",
+    description: "Optimizing supply chain efficiency through innovative packaging.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`
+  },
+  {
+    title: "Consumer Retail Brands",
+    description: "Building strong brand presence in global consumer markets.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`
+  },
+  {
+    title: "Construction & Infrastructure",
+    description: "Developing world-class architectural and infrastructure projects.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="10" height="14" rx="2" ry="2"></rect><path d="M12 21V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v18"></path><path d="M3 12h8"></path><path d="M3 16h8"></path><path d="M12 7h10"></path><path d="M12 11h10"></path></svg>`
+  }
+];
+---
+
+<section id="industries" class="container-custom pb-24">
+  <div class="bg-white rounded-[32px] p-8 lg:p-20 border border-gray-100 shadow-sm">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20" data-reveal>
+      <h2 class="text-4xl lg:text-5xl font-semibold text-[#111827]">Sectors and Expertise</h2>
+      <p class="text-lg text-gray-500 max-w-lg">
+        We focus on high-impact industries where vertical integration and operational excellence create significant competitive advantages.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {industries.map((item) => (
+        <div class="p-10 rounded-2xl bg-[#F9FAFB] hover:bg-white hover:shadow-xl transition-all duration-300 group border border-transparent hover:border-gray-100" data-reveal>
+          <div class="w-14 h-14 rounded-2xl bg-[#111827] text-white flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+            <Fragment set:html={item.icon} />
+          </div>
+          <h3 class="text-xl font-bold text-[#111827] mb-4">{item.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

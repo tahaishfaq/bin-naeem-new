@@ -1,0 +1,185 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
+---
+
+<header id="main-nav" class="fixed top-4 md:top-6 left-0 right-0 z-50 h-16 pointer-events-none transition-all duration-700">
+  <div class="container-custom h-full flex items-center justify-center">
+    <!-- Navbar Pill: Reduced height from h-14 to h-12, softer border, more transparent -->
+    <div id="nav-pill" class="w-full h-12 md:h-14 px-4 md:px-6 flex items-center justify-between border rounded-full shadow-lg pointer-events-auto transition-all duration-500 ease-in-out bg-white/[0.08] backdrop-blur-2xl border-white/10 text-white overflow-hidden group/nav">
+      
+      <!-- Logo Section: Logo Only, No Background -->
+      <div class="flex items-center">
+        <a href="/" class="group flex items-center">
+          <Image 
+            src={logoImg} 
+            alt="Bin Naeem Group Logo" 
+            class="h-60 md:h-80 w-auto object-contain"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links: Improved hover UX -->
+      <nav class="hidden md:flex items-center gap-1">
+        {[
+          { label: 'About', href: '#about' },
+          { label: 'Companies', href: '#companies' },
+          { label: 'Industries', href: '#industries' },
+          { label: 'Contact', href: '#contact' }
+        ].map((link) => (
+          <a 
+            href={link.href} 
+            class="nav-link relative px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-all duration-300 group/link"
+          >
+            <span class="relative z-10">{link.label}</span>
+            <span class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-px bg-white transform scale-x-0 group-hover/link:scale-x-100 transition-transform duration-500 origin-center"></span>
+            <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0.5 h-0.5 bg-white rounded-full transform scale-0 group-hover/link:scale-100 transition-transform duration-500 delay-150"></span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop CTA & Mobile Toggle: High contrast & Hover effects -->
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex">
+          <a id="nav-cta" href="#contact" class="group/cta relative bg-white text-[#111827] px-7 py-2 rounded-full text-[9px] font-extrabold uppercase tracking-widest transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] active:translate-y-0 active:scale-95 shadow-md flex items-center gap-3">
+            <span class="relative z-10 transition-transform duration-500 group-hover/cta:-translate-x-0.5">Group Inquiry</span>
+            <div class="w-7 h-7 rounded-full bg-[#111827] text-white flex items-center justify-center transition-all duration-500 group-hover/cta:bg-[#111827] group-hover/cta:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-500 group-hover/cta:rotate-45"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+          </a>
+        </div>
+
+        <button id="mobile-menu-toggle" class="flex md:hidden w-10 h-10 items-center justify-center rounded-full bg-white/10 border border-white/10 transition-all duration-300 hover:bg-white/20" aria-label="Toggle Mobile Menu">
+          <div class="w-5 h-4 flex flex-col justify-between overflow-hidden relative group">
+            <span class="w-full h-px bg-white rounded-full transition-all duration-300 bar-top"></span>
+            <span class="w-full h-px bg-white rounded-full transition-all duration-300 bar-mid"></span>
+            <span class="w-full h-px bg-white rounded-full transition-all duration-300 bar-bot"></span>
+          </div>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-[#111827]/98 backdrop-blur-3xl border border-white/5 rounded-3xl p-8 shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-500 z-40 md:hidden">
+    <nav class="flex flex-col gap-5">
+      {[
+        { label: 'About', href: '#about' },
+        { label: 'Companies', href: '#companies' },
+        { label: 'Industries', href: '#industries' },
+        { label: 'Contact', href: '#contact' }
+      ].map((link) => (
+        <a 
+          href={link.href} 
+          class="mobile-nav-link text-xl font-semibold text-white/40 hover:text-white flex items-center justify-between group py-2 transition-colors border-b border-white/5"
+        >
+          <span>{link.label}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      ))}
+      <a href="#contact" class="mt-4 bg-white text-[#111827] py-5 rounded-2xl text-center font-black uppercase tracking-[0.2em] text-[10px] shadow-xl">
+        Group Inquiry
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Scrolled State: Original Navy background */
+  .nav-scrolled #nav-pill {
+    background-color: #111827;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.6);
+    width: 95%;
+  }
+
+  .nav-scrolled #logo-icon {
+    transform: scale(0.9);
+  }
+
+  /* Hamburger Animation */
+  .menu-open .bar-top { transform: translateY(7px) rotate(45deg); }
+  .menu-open .bar-mid { transform: translateX(20px); opacity: 0; }
+  .menu-open .bar-bot { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile Menu Transitions */
+  .menu-open #mobile-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Entrance Animation */
+  header {
+    animation: nav-enter 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes nav-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-50px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
+
+<script>
+  function initNav() {
+    const navPill = document.getElementById('nav-pill');
+    const mainNav = document.getElementById('main-nav');
+    const heroSection = document.querySelector('section');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (!navPill || !mainNav) return;
+
+    // Scroll Handler
+    const handleScroll = () => {
+      const heroHeight = heroSection ? heroSection.offsetHeight - 100 : 400;
+      if (window.scrollY > heroHeight) {
+        mainNav.classList.add('nav-scrolled');
+      } else {
+        mainNav.classList.remove('nav-scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    // Mobile Menu Toggle
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('menu-open');
+      });
+    }
+
+    // Close menu on link click
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('menu-open');
+      });
+    });
+
+    // Close menu on resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mainNav.classList.remove('menu-open');
+      }
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (!mainNav.contains(target) && mainNav.classList.contains('menu-open')) {
+        mainNav.classList.remove('menu-open');
+      }
+    });
+  }
+
+  initNav();
+  document.addEventListener('astro:after-swap', initNav);
+</script>

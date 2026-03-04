@@ -1,0 +1,188 @@
+---
+const bannerImages = [
+  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1920",
+  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1920",
+  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1920",
+  "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=1920",
+  "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=1920"
+];
+---
+
+<section class="relative h-[95vh] md:h-screen w-full overflow-hidden bg-[#111827]">
+  <!-- Cinematic Background Slider -->
+  <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+    {bannerImages.map((img, index) => (
+      <div 
+        class={`absolute inset-0 w-full h-full transition-all duration-1500 ease-in-out transform ${index === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+        data-index={index}
+      >
+        <img 
+          src={img} 
+          alt={`Bin Naeem Group Industrial ${index + 1}`} 
+          class="w-full h-full object-cover parallax-bg"
+        />
+        <!-- Cinematic Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Noise Texture Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Content Overlay -->
+  <div class="relative z-20 h-full flex items-center">
+    <div class="container-custom py-12 md:py-24">
+      <div class="max-w-4xl space-y-4 md:space-y-6" data-reveal>
+
+        
+        <!-- Main Heading with Hierarchy -->
+        <div class="space-y-1 md:space-y-2">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tighter text-white overflow-hidden">
+            <span class="block font-medium opacity-60 stagger-item translate-y-full transition-transform duration-700">Bin Naeem Group.</span>
+            <span class="block font-extrabold stagger-item translate-y-full transition-transform duration-700 delay-100">
+              Architecting <span class="text-white italic underline decoration-white/20 underline-offset-8">Industrial Growth</span> <br class="hidden lg:block" />
+              in Pakistan.
+            </span>
+          </h1>
+        </div>
+        
+        <!-- Refined Paragraph -->
+        <p class="text-sm md:text-base lg:text-lg text-white/60 max-w-2xl leading-relaxed font-light stagger-item opacity-0 transition-opacity duration-1000 delay-300">
+          The central pillar of excellence, providing strategic leadership and operational oversight to a diversified portfolio of market-leading industries across the region.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row flex-wrap gap-4 pt-4 stagger-item opacity-0 transition-opacity duration-1000 delay-400">
+          <a href="#companies" class="bg-white text-[#111827] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] active:scale-95 inline-flex items-center justify-center">
+            Explore Subsidiaries
+          </a>
+          <a href="#contact" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white backdrop-blur-sm px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 active:scale-95 inline-flex items-center justify-center">
+            Group Headquarters
+          </a>
+        </div>
+
+        <!-- Featured Indicators at Bottom -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 pt-12 border-t border-white/10 mt-12 stagger-item opacity-0 transition-opacity duration-1000 delay-500">
+          <div class="group/stat">
+            <p class="text-lg md:text-xl font-bold text-white tracking-tight group-hover/stat:text-white/100 transition-colors">Diversified</p>
+            <p class="text-[9px] text-white/40 uppercase tracking-[0.25em] mt-2 font-medium">Business Model</p>
+          </div>
+          <div class="relative pl-0 lg:pl-8 before:content-[''] before:hidden lg:before:block before:absolute before:left-0 before:top-0 before:h-full before:w-[1px] before:bg-white/10 group/stat">
+            <p class="text-lg md:text-xl font-bold text-white tracking-tight group-hover/stat:text-white/100 transition-colors">Synergistic</p>
+            <p class="text-[9px] text-white/40 uppercase tracking-[0.25em] mt-2 font-medium">Operations</p>
+          </div>
+          <div class="relative pl-0 lg:pl-8 before:content-[''] before:hidden lg:before:block before:absolute before:left-0 before:top-0 before:h-full before:w-[1px] before:bg-white/10 group/stat hidden sm:block">
+            <p class="text-lg md:text-xl font-bold text-white tracking-tight group-hover/stat:text-white/100 transition-colors">Global</p>
+            <p class="text-[9px] text-white/40 uppercase tracking-[0.25em] mt-2 font-medium">Standards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Slider Indicators & Scroll - Discrete -->
+  <div class="absolute bottom-12 right-6 md:right-12 flex flex-col items-end gap-10 z-30">
+    <div class="flex flex-col items-end gap-3">
+      {bannerImages.map((_, index) => (
+        <button 
+          class={`indicator-dot w-1.5 h-1.5 rounded-full transition-all duration-500 ${index === 0 ? 'bg-white scale-150' : 'bg-white/20'}`}
+          data-indicator={index}
+          aria-label={`Go to slide ${index + 1}`}
+        ></button>
+      ))}
+    </div>
+
+    <!-- Scroll Down Icon (Relocated) -->
+    <a href="#about" class="group flex flex-col items-center gap-4 text-white/30 hover:text-white transition-colors animate-bounce-slow">
+      <span class="text-[8px] font-bold tracking-[0.4em] uppercase vertical-text">Scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"></div>
+    </a>
+  </div>
+</section>
+
+<style>
+  .vertical-text {
+    writing-mode: vertical-lr;
+  }
+
+  /* Parallax Background Movement */
+  .parallax-bg {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Stagger Reveal Classes */
+  [data-reveal].active .stagger-item {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Custom indicator active state */
+  .indicator-dot.active {
+    background-color: white;
+    transform: scale(1.5);
+  }
+</style>
+
+<script>
+  function setupHero() {
+    const sliderItems = document.querySelectorAll('#hero-slider > div');
+    const indicators = document.querySelectorAll('[data-indicator]');
+    const parallaxImages = document.querySelectorAll('.parallax-bg');
+    let currentIndex = 0;
+    const interval = 6000;
+
+    // Slider Functionality
+    function showSlide(index) {
+      if (index === currentIndex) return;
+
+      // Current slide exit
+      sliderItems[currentIndex].classList.remove('opacity-100', 'scale-100');
+      sliderItems[currentIndex].classList.add('opacity-0', 'scale-110');
+      indicators[currentIndex].classList.remove('bg-white', 'scale-150');
+      indicators[currentIndex].classList.add('bg-white/20');
+
+      // Next slide entry
+      sliderItems[index].classList.remove('opacity-0', 'scale-110');
+      sliderItems[index].classList.add('opacity-100', 'scale-100');
+      indicators[index].classList.remove('bg-white/20');
+      indicators[index].classList.add('bg-white', 'scale-150');
+      
+      currentIndex = index;
+    }
+
+    function showNext() {
+      const nextIndex = (currentIndex + 1) % sliderItems.length;
+      showSlide(nextIndex);
+    }
+
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        showSlide(index);
+        resetTimer();
+      });
+    });
+
+    let autoSlideTimer = setInterval(showNext, interval);
+
+    function resetTimer() {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(showNext, interval);
+    }
+
+    // Parallax Effect
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      parallaxImages.forEach((img) => {
+        (img as HTMLElement).style.transform = `translateY(${scrollY * 0.15}px)`;
+      });
+    }, { passive: true });
+  }
+
+  // Support for View Transitions
+  setupHero();
+  document.addEventListener('astro:after-swap', setupHero);
+</script>

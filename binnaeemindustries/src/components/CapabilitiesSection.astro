@@ -1,0 +1,50 @@
+---
+const capabilities = [
+  {
+    title: "Supply Chain Optimization",
+    description: "End-to-end management from manufacturing to distribution."
+  },
+  {
+    title: "R&D Excellence",
+    description: "Continuous innovation in material science and engineering."
+  },
+  {
+    title: "Global Distribution",
+    description: "Strategic logistics network spanning multiple continents."
+  },
+  {
+    title: "Sustainability Focus",
+    description: "Commitment to eco-friendly industrial practices."
+  }
+];
+---
+
+<section class="section-padding container-custom">
+  <div class="bg-[#111827] rounded-[32px] p-8 lg:p-20 text-white overflow-hidden relative">
+    <!-- Abstract Decoration -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gray-800 rounded-full blur-[120px] -mr-48 -mt-48 opacity-20"></div>
+    
+    <div class="flex flex-col lg:flex-row gap-20 relative z-10">
+      <div class="lg:w-1/3" data-reveal>
+        <h2 class="text-4xl lg:text-5xl font-semibold leading-tight mb-8">
+          Innovation That Drives Growth.
+        </h2>
+        <p class="text-gray-400 text-lg">
+          Leveraging cutting-edge technology to redefine industrial standards across the globe.
+        </p>
+      </div>
+      
+      <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        {capabilities.map((item) => (
+          <div class="border-b border-white/10 pb-8 group" data-reveal>
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-semibold group-hover:text-gray-300 transition-colors uppercase tracking-tight">{item.title}</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
