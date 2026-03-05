@@ -3,10 +3,10 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
 ---
 
-<header id="main-nav" class="fixed top-4 md:top-6 left-0 right-0 z-50 h-16 pointer-events-none transition-all duration-700">
+<header id="main-nav" class="fixed top-4 md:top-6 left-0 right-0 z-50 h-16 pointer-events-none transition-transform duration-700">
   <div class="container-custom h-full flex items-center justify-center">
-    <!-- Navbar Pill: Reduced height from h-14 to h-12, softer border, more transparent -->
-    <div id="nav-pill" class="w-full h-12 md:h-14 px-4 md:px-6 flex items-center justify-between border rounded-full shadow-lg pointer-events-auto transition-all duration-500 ease-in-out bg-white/[0.08] backdrop-blur-2xl border-white/10 text-white overflow-hidden group/nav">
+    <!-- Navbar Pill -->
+    <div id="nav-pill" class="w-full h-12 md:h-14 px-4 md:px-6 flex items-center justify-between border rounded-full shadow-lg pointer-events-auto bg-white/[0.08] backdrop-blur-2xl border-white/10 text-white overflow-hidden group/nav">
       
       <!-- Logo Section: Logo Only, No Background -->
       <div class="flex items-center">
@@ -128,27 +128,72 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
 </style>
 
 <script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
   function initNav() {
     const navPill = document.getElementById('nav-pill');
     const mainNav = document.getElementById('main-nav');
-    const heroSection = document.querySelector('section');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const themeSections = document.querySelectorAll('[data-theme]');
     
     if (!navPill || !mainNav) return;
 
-    // Scroll Handler
-    const handleScroll = () => {
-      const heroHeight = heroSection ? heroSection.offsetHeight - 100 : 400;
-      if (window.scrollY > heroHeight) {
-        mainNav.classList.add('nav-scrolled');
-      } else {
-        mainNav.classList.remove('nav-scrolled');
-      }
+    // Helper functions for theme switching
+    const setNavLight = () => {
+      gsap.to(navPill, {
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        color: '#ffffff',
+        width: '100%',
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+      mainNav.classList.remove('nav-scrolled');
+      
+      // Update links
+      gsap.to('.nav-link', { color: 'rgba(255, 255, 255, 0.5)', duration: 0.5 });
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    const setNavDark = () => {
+      gsap.to(navPill, {
+        backgroundColor: '#111827',
+        borderColor: 'rgba(255, 255, 255, 0.05)',
+        color: '#ffffff',
+        width: '95%',
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+      mainNav.classList.add('nav-scrolled');
+
+      // Update links
+      gsap.to('.nav-link', { color: 'rgba(255, 255, 255, 0.5)', duration: 0.5 });
+    };
+
+    // Detect initial theme or default to dark (if scrolled) or light (if at top)
+    const initialTheme = themeSections[0]?.getAttribute('data-theme') || 'dark';
+    if (window.scrollY < 50) {
+      setNavLight();
+    }
+
+    // Create ScrollTriggers for each theme section
+    themeSections.forEach((section) => {
+      const theme = section.getAttribute('data-theme');
+      
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 60px", 
+        end: "bottom 60px",
+        onToggle: (self) => {
+          if (self.isActive) {
+            theme === 'dark' ? setNavLight() : setNavDark();
+          }
+        }
+      });
+    });
 
     // Mobile Menu Toggle
     if (mobileMenuToggle) {

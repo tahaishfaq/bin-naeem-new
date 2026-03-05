@@ -1,78 +1,221 @@
 ---
+import { Image } from 'astro:assets';
+import binNaeemLogo from '../assets/bin-naeem-logos/bin-naeem.PNG';
+import naeemPackagesLogo from '../assets/bin-naeem-logos/naeem-packages.PNG';
+import hanplasLogo from '../assets/bin-naeem-logos/hanplas.PNG';
+import boxPackLogo from '../assets/bin-naeem-logos/box-pack.PNG';
+import mondsubLogo from '../assets/bin-naeem-logos/mondsub.PNG';
+import pinatasLogo from '../assets/bin-naeem-logos/pinatas.PNG';
+import nsBuildersLogo from '../assets/bin-naeem-logos/ns-builders.PNG';
+
 const companies = [
   {
+    name: "Bin Naeem Industries",
+    industry: "Holding Company",
+    description: "We deliver excellence and innovation across industries, offering top-quality solutions from packaging to skincare, machinery, and beyond.",
+    logo: binNaeemLogo,
+    keywords: "Leadership • Innovation • Excellence"
+  },
+  {
     name: "Naeem Packages",
-    industry: "Industrial Manufacturing",
-    description: "High-performance industrial packaging solutions for global supply chains.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad86d6f5fbdf?auto=format&fit=crop&q=80&w=800"
+    industry: "Printing & Packaging",
+    description: "Experts in flexible printing and packaging, offering premium solutions for various industries.",
+    logo: naeemPackagesLogo,
+    keywords: "Flexible Printing • Premium Solutions"
   },
   {
     name: "Hanplas Machinery",
-    industry: "Engineering & Machinery",
-    description: "State-of-the-art machinery and technical engineering services.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+    industry: "Machinery Manufacturing",
+    description: "China's leading packaging machinery manufacturer, providing state-of-the-art equipment to streamline production.",
+    logo: hanplasLogo,
+    keywords: "State-of-the-art • Streamlined Production"
   },
   {
     name: "Box Pack",
-    industry: "Packaging & Logistics",
-    description: "Next-generation corrugated solutions and protective logistics material.",
-    image: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&q=80&w=800"
+    industry: "Corrugation Solutions",
+    description: "A reliable corrugation company delivering durable and innovative carton packaging solutions.",
+    logo: boxPackLogo,
+    keywords: "Durable • Innovative • Reliable"
   },
   {
     name: "Mondsub",
-    industry: "Consumer Retail Brands",
-    description: "Premium personal care and consumer products for the modern lifestyle.",
-    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800"
+    industry: "Skincare & Beauty",
+    description: "A skincare brand offering advanced beauty and self-care products.",
+    logo: mondsubLogo,
+    keywords: "Advanced Beauty • Self-care"
   },
   {
     name: "House of Pinatas",
-    industry: "Consumer & Events",
-    description: "Innovative product design and creative consumer experiences.",
-    image: "https://images.unsplash.com/photo-1533219057257-4bb9ed5d2cc6?auto=format&fit=crop&q=80&w=800"
+    industry: "Creative & Events",
+    description: "A creative company specializing in customizable pinatas to make every celebration unique.",
+    logo: pinatasLogo,
+    keywords: "Customizable • Creative • Unique"
   },
   {
     name: "NS Builders",
-    industry: "Construction & Infrastructure",
-    description: "Delivering structural excellence and sustainable urban developments.",
-    image: "https://images.unsplash.com/photo-1503387762-11a0fcfbd307?auto=format&fit=crop&q=80&w=800"
+    industry: "Construction",
+    description: "Every project is a commitment to excellence through selective work and expert craftsmanship.",
+    logo: nsBuildersLogo,
+    keywords: "Excellence • Craftsmanship"
   }
 ];
 ---
 
-<section id="companies" class="section-padding container-custom">
-  <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16" data-reveal>
-    <div class="max-w-2xl">
-      <h2 class="text-4xl lg:text-5xl font-semibold text-[#111827] mb-4">Our Group Companies</h2>
-      <p class="text-lg text-gray-500">A diverse portfolio leading innovation across multiple sectors.</p>
-    </div>
-    <div>
-      <a href="#contact" class="btn-secondary group">
-        View All Companies 
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {companies.map((company) => (
-      <div class="card-premium group" data-reveal>
-        <div class="aspect-[4/3] overflow-hidden">
-          <img 
-            src={company.image} 
-            alt={company.name} 
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          />
+<section id="companies" data-theme="dark" class="relative overflow-hidden bg-white">
+  <!-- Horizontal Scroll Container -->
+  <div class="section-container bg-[#111827]">
+    <div class="h-screen flex items-center overflow-hidden pt-20">
+      
+      <!-- Static Content (Left Side) -->
+      <div class="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 pointer-events-none">
+        <div class="lg:col-span-4 space-y-6 pointer-events-auto bg-[#111827]/80 backdrop-blur-md p-8 lg:p-0 rounded-2xl lg:rounded-none">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black tracking-widest text-white/60 uppercase border border-white/10">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            OUR COMPANIES
+          </div>
+          <h2 class="text-4xl lg:text-7xl font-black text-white leading-tight tracking-tight uppercase">
+            Our Group <br/><span class="text-blue-500">Portfolio</span>
+          </h2>
+          <p class="text-lg text-white/40 font-light leading-relaxed max-w-sm">
+            Bin Naeem Industries operates a portfolio of specialized companies that collectively drive growth across key industrial sectors.
+          </p>
+          
+          <div class="pt-8">
+             <a href="#contact" class="group relative inline-flex items-center gap-6 px-10 py-5 bg-blue-600 text-white rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:bg-blue-700 hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-1">
+               View All Companies
+               <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+               </div>
+             </a>
+          </div>
         </div>
-        <div class="p-8">
-          <span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-3 block">{company.industry}</span>
-          <h3 class="text-xl font-bold text-[#111827] mb-3">{company.name}</h3>
-          <p class="text-gray-500 text-sm leading-relaxed mb-6">{company.description}</p>
-          <a href="#" class="inline-flex items-center text-xs font-semibold text-[#111827] hover:gap-2 transition-all">
-            Learn More 
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
+
+        <!-- Horizontal Scroll Cards Area -->
+        <div class="lg:col-span-8 flex pointer-events-auto h-full items-center">
+          <div class="horizontal-scroll-wrapper flex gap-10 px-8 lg:px-20 h-[65vh] items-center">
+            {companies.map((v) => (
+              <div class="vertical-card shrink-0 w-[300px] md:w-[400px] h-[450px] md:h-[530px] group">
+                <div class="relative h-full p-6 md:p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl transition-all duration-700 group-hover:bg-white/10 group-hover:border-blue-500/30 group-hover:-translate-y-4 flex flex-col items-center text-center">
+                  
+                  <!-- Premium Card Glow -->
+                  <div class="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                  <div class="relative z-10 h-full flex flex-col items-center">
+                    <!-- Logo Container -->
+                    <div class="relative w-full h-60 flex items-center justify-center mb-6">
+                      <Image 
+                        src={v.logo} 
+                        alt={v.name} 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      />
+                    </div>
+                    
+                    <span class="text-[10px] font-black tracking-[0.3em] text-blue-400 uppercase mb-3 block">{v.industry}</span>
+                    <h3 class="text-xl md:text-2xl font-black text-white mb-4 tracking-tight group-hover:text-blue-400 transition-colors uppercase">{v.name}</h3>
+                    <p class="text-white/40 text-[10px] md:text-sm font-light leading-relaxed mb-6 flex-grow">
+                      {v.description}
+                    </p>
+
+                    <div class="w-full pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
+                      <span class="text-[9px] font-bold text-white/20 uppercase tracking-widest">{v.keywords}</span>
+                      <div class="text-blue-500 transition-transform group-hover:translate-x-2">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="7" x2="7" y2="17"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <!-- Spacer for scroll ending -->
+            <div class="w-[30vw]"></div>
+          </div>
         </div>
       </div>
-    ))}
+
+      <!-- Scroll Progress Tracker -->
+      <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
+        <div id="verticals-progress" class="h-full bg-blue-500 w-0 origin-left"></div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initVerticals() {
+    const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+    const cards = document.querySelectorAll('.vertical-card');
+    const container = document.querySelector('.section-container');
+    const progress = document.getElementById('verticals-progress');
+
+    if (!wrapper || !container) return;
+
+    // Horizontal Scroll Timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        pin: true,
+        scrub: 1,
+        start: "top top",
+        end: () => `+=${wrapper.scrollWidth}`,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    tl.to(wrapper, {
+      x: () => -(wrapper.scrollWidth - window.innerWidth + 100),
+      ease: "none"
+    });
+
+    // Update Progress Bar
+    tl.to(progress, {
+      scaleX: 1,
+      ease: "none"
+    }, 0);
+
+    // In-card staggering
+    cards.forEach((card) => {
+      gsap.from(card, {
+        opacity: 0,
+        x: 100,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: card,
+          containerAnimation: tl,
+          start: "left 90%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+  }
+
+  // Handle both initial load and Astro transitions
+  initVerticals();
+  document.addEventListener('astro:after-swap', initVerticals);
+  
+  // Re-init on resize to fix calculations
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
+</script>
+
+<style>
+  .section-container {
+    height: 100vh;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .horizontal-scroll-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .horizontal-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+</style>

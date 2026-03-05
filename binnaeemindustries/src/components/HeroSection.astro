@@ -8,7 +8,7 @@ const bannerImages = [
 ];
 ---
 
-<section class="relative h-[100vh] w-full overflow-hidden bg-[#111827]">
+<section id="hero" data-theme="dark" class="relative h-[100vh] w-full overflow-hidden bg-[#111827]">
   
   <!-- Cinematic Background Slider (Layers) -->
   <div id="hero-slider" class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
@@ -140,17 +140,12 @@ const bannerImages = [
 <style>
   .parallax-bg {
     will-change: transform;
-    transition: transform 0.1s ease-out;
   }
 
-  /* Stagger Reveal System Override */
-  [data-reveal].active .stagger-item {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-  }
-
+  /* Stagger Reveal System Override - Now handled by GSAP for better perf */
   .stagger-item {
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
   }
 
   /* Slider Transitions */
@@ -160,12 +155,44 @@ const bannerImages = [
 </style>
 
 <script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
   function setupHero() {
     const sliderItems = document.querySelectorAll('#hero-slider > div');
     const indicators = document.querySelectorAll('[data-indicator]');
     const parallaxImages = document.querySelectorAll('.parallax-bg');
+    const heroSection = document.querySelector('section');
+    const revealItems = document.querySelectorAll('.stagger-item');
+    
     let currentIndex = 0;
     const interval = 7000;
+
+    // Premium Reveal Animation
+    gsap.to(revealItems, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 0.5
+    });
+
+    // GPU-Accelerated Parallax
+    parallaxImages.forEach((img) => {
+      gsap.to(img, {
+        y: '20%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroSection,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    });
 
     function showSlide(index) {
       if (index === currentIndex) return;
@@ -201,14 +228,6 @@ const bannerImages = [
       clearInterval(autoSlideTimer);
       autoSlideTimer = setInterval(showNext, interval);
     }
-
-    // Parallax Effect
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      parallaxImages.forEach((img) => {
-        (img as HTMLElement).style.transform = `translateY(${scrollY * 0.12}px) scale(${1 + scrollY * 0.0002})`;
-      });
-    }, { passive: true });
   }
 
   setupHero();

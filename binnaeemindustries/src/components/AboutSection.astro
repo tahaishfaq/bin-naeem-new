@@ -1,108 +1,174 @@
 ---
 const highlights = [
-  "Diversified Holding Company Structure",
-  "Multi-Sector Industrial Operations",
-  "Strategic Investments & Growth Management",
-  "Strong Corporate Governance Framework",
-  "Sustainable and Long-Term Business Model"
+  { title: "Holding Structure", desc: "Strategic governance across sectors." },
+  { title: "Industrial Reach", desc: "Focus on core manufacturing." },
+  { title: "Strategic Growth", desc: "Investment management focus." },
+  { title: "ESG Commitment", desc: "Long-term sustainable excellence." }
 ];
 
 const stats = [
-  { label: "Years of Industry Experience", value: "10+" },
-  { label: "Subsidiary Companies", value: "Multiple" },
-  { label: "Operations", value: "Nationwide" },
-  { label: "Portfolio", value: "Cross-Industry" }
+  { label: "Experience", value: 12, suffix: "+" },
+  { label: "Subsidiaries", value: 8, suffix: "" },
+  { label: "Reach", value: 100, suffix: "%" },
+  { label: "Industries", value: 5, suffix: "+" }
 ];
 ---
 
-<section id="about" class="section-padding container-custom overflow-hidden">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
-    
-    <!-- Left: Large Industrial Image with Floating Card -->
-    <div class="lg:col-span-5 order-2 lg:order-1 relative" data-reveal>
-      <div class="container-rounded aspect-[4/5] shadow-2xl relative z-10 overflow-hidden group">
-        <img 
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
-          alt="Bin Naeem Industries Industrial Excellence" 
-          class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-      </div>
+<section id="about" data-theme="light" class="relative py-24 md:py-32 overflow-hidden bg-white">
+  
+  <!-- Subtle Cinematic Background Flourish -->
+  <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px] -z-10 opacity-60"></div>
+
+  <div class="container-custom">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
       
-      <!-- Decorative Element -->
-      <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-[#111827]/5 rounded-full -z-10 animate-float"></div>
-      <div class="absolute -top-12 -right-12 w-64 h-64 border border-[#111827]/10 rounded-full -z-10"></div>
-    </div>
-    
-    <!-- Right: Content & Copy -->
-    <div class="lg:col-span-7 order-1 lg:order-2 space-y-10" data-reveal>
-      <div class="space-y-4">
-        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#111827]/5 text-[10px] font-black tracking-widest text-[#111827] uppercase">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#111827] animate-pulse"></span>
-          ABOUT BIN NAEEM INDUSTRIES
+      <!-- Left: Visual Pillar -->
+      <div class="lg:col-span-5 relative group" data-reveal>
+        <div class="relative z-10 rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)]">
+          <img 
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
+            alt="Bin Naeem Industries Industrial Leadership" 
+            class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#111827]/40 via-transparent to-transparent opacity-60"></div>
         </div>
         
-        <h2 class="text-4xl lg:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter">
-          Driving Industrial Growth Through <span class="text-white bg-[#111827] px-3 py-1 rounded-sm rotate-1 inline-block mt-1">Strategic Leadership</span> and Diversified Excellence
-        </h2>
+        <div class="absolute -bottom-6 -right-6 w-32 h-32 border-[12px] border-blue-50/50 rounded-full -z-10"></div>
+        <div class="absolute -top-10 -left-10 text-[120px] font-black text-blue-50/30 select-none -z-10">BNI</div>
       </div>
       
-      <div class="space-y-6 text-base lg:text-lg text-gray-600 leading-relaxed font-light">
-        <p>
-          Bin Naeem Industries (Pvt.) Ltd. is a leading diversified holding company operating across multiple high-impact industries in Pakistan. Built on a foundation of integrity, operational excellence, and long-term strategic vision, the group oversees a portfolio of dynamic companies serving manufacturing, logistics, infrastructure, and essential industrial sectors.
-        </p>
-        <p>
-          As a multi-industry corporate group, Bin Naeem Industries plays a critical role in strengthening supply chains, supporting infrastructure development, and advancing industrial innovation. Each subsidiary under the group operates with specialized expertise while aligning with the parent company’s unified mission.
-        </p>
-      </div>
+      <!-- Right: Narrative & Small Column Grid -->
+      <div class="lg:col-span-7 space-y-10" data-reveal>
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#111827]/5 text-[10px] font-black tracking-widest text-[#111827] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#111827] animate-pulse"></span>
+            ABOUT BIN NAEEM INDUSTRIES
+          </div>
+          
+          <h2 class="text-4xl lg:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter">
+            Driving Industrial Growth Through <span class="text-white bg-[#111827] px-3 py-1 rounded-sm rotate-1 inline-block mt-1">Strategic Leadership</span> and Diversified Excellence
+          </h2>
+          
+          <p class="text-base lg:text-lg text-gray-500 font-light leading-relaxed max-w-2xl">
+            Bin Naeem Industries (Pvt.) Ltd. is a leading diversified holding company operating across multiple high-impact industries in Pakistan. Built on a foundation of integrity, operational excellence, and long-term strategic vision, the group oversees a portfolio of dynamic companies serving manufacturing, logistics, infrastructure, and essential industrial sectors.
+          </p>
+        </div>
 
-      <!-- Highlight Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {highlights.map((item) => (
-          <div class="flex items-start gap-3 p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-[#111827]/20 transition-all group">
-            <div class="w-5 h-5 rounded-full bg-[#111827]/10 flex items-center justify-center mt-0.5 group-hover:bg-[#111827] transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="text-[#111827] group-hover:text-white"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <!-- Pillar Cards (Smaller, Compact Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {highlights.map((item) => (
+            <div 
+              class="p-5 rounded-2xl border border-gray-100 bg-white hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-500 group about-pillar-card"
+            >
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-blue-600/5 border border-blue-600/10 flex items-center justify-center group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-blue-900 group-hover:text-white"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="space-y-1">
+                  <h3 class="text-xs font-black text-[#111827] uppercase tracking-tight">{item.title}</h3>
+                  <p class="text-[11px] text-gray-400 font-medium leading-tight">{item.desc}</p>
+                </div>
+              </div>
             </div>
-            <span class="text-sm font-bold text-gray-700">{item}</span>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-8 pt-4">
+          <a href="#companies" class="group relative px-9 py-4 bg-[#111827] text-white rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 hover:shadow-[0_20px_40px_rgba(17,24,39,0.2)] hover:-translate-y-1">
+            Explore Portfolio
+          </a>
+          <div class="flex items-center gap-4 py-2 border-l border-gray-100 pl-8">
+            <div class="flex -space-x-2">
+               {[1,2,3].map(() => (
+                 <div class="w-9 h-9 rounded-full border-2 border-white bg-blue-50 overflow-hidden ring-1 ring-blue-100/50">
+                   <div class="w-full h-full bg-blue-900/5 flex items-center justify-center text-[9px] font-black text-blue-900">BN</div>
+                 </div>
+               ))}
+            </div>
+            <p class="text-[8px] font-bold text-gray-400 uppercase tracking-widest leading-tight">
+              Backed by <br /><span class="text-[#111827]">Industry Experts</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated High-Authority Stats Row -->
+    <div id="stats-trigger" class="mt-24 pt-16 border-t border-gray-100">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="space-y-2 group text-center lg:text-left">
+            <div class="flex items-baseline justify-center lg:justify-start gap-1">
+              <span class="text-4xl lg:text-6xl font-black text-[#111827] tracking-tighter stat-number" data-target={stat.value}>0</span>
+              <span class="text-2xl lg:text-3xl font-black text-blue-600/40">{stat.suffix}</span>
+            </div>
+            <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.4em] leading-tight">
+              {stat.label}
+            </p>
           </div>
         ))}
       </div>
-
-      <p class="text-[15px] italic text-[#111827]/70 font-medium">
-        With a commitment to innovation, operational discipline, and sustainable development, Bin Naeem Industries is shaping the future of Pakistan’s industrial landscape.
-      </p>
-      
-      <div class="pt-6 flex flex-col sm:flex-row items-center gap-6">
-        <a href="#companies" class="btn-primary w-full sm:w-auto shadow-xl">
-          Explore Our Companies
-        </a>
-        <div class="flex items-center gap-4 py-2 border-l border-gray-200 pl-6">
-          <div class="flex -space-x-3">
-             {[1,2,3].map(() => (
-               <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-200 overflow-hidden ring-1 ring-gray-100">
-                 <div class="w-full h-full bg-[#111827]/10"></div>
-               </div>
-             ))}
-          </div>
-          <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none">
-            Trusted by <br /><span class="text-gray-900">Global Partners</span>
-          </p>
-        </div>
-      </div>
     </div>
   </div>
-
-  <!-- Animated Stats Row -->
-  <div class="mt-32 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-gray-100 pt-16" data-reveal>
-    {stats.map((stat) => (
-      <div class="space-y-2 group">
-        <p class="text-4xl lg:text-5xl font-black text-[#111827] tracking-tighter group-hover:translate-x-1 transition-transform">
-          {stat.value}
-        </p>
-        <p class="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] leading-tight max-w-[120px]">
-          {stat.label}
-        </p>
-      </div>
-    ))}
-  </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAbout() {
+    const statTrigger = document.getElementById('stats-trigger');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const pillarCards = document.querySelectorAll('.about-pillar-card');
+    const aboutSection = document.getElementById('about');
+
+    if (!aboutSection || !statTrigger) return;
+
+    // Stats Counter Animation
+    statNumbers.forEach(stat => {
+      const target = parseInt(stat.getAttribute('data-target') || '0');
+      
+      ScrollTrigger.create({
+        trigger: statTrigger,
+        start: 'top 90%',
+        onEnter: () => {
+          gsap.to(stat, {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: 'expo.out'
+          });
+        }
+      });
+    });
+
+    // Pillar Cards Entrances - Reliable Reveal
+    gsap.set(pillarCards, { opacity: 0, y: 20 });
+    
+    ScrollTrigger.create({
+      trigger: aboutSection,
+      start: 'top 70%',
+      onEnter: () => {
+        gsap.to(pillarCards, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power2.out',
+          overwrite: true
+        });
+      }
+    });
+  }
+
+  initAbout();
+  document.addEventListener('astro:after-swap', initAbout);
+</script>
+
+<style>
+  .stat-number {
+    font-variant-numeric: tabular-nums;
+  }
+</style>
