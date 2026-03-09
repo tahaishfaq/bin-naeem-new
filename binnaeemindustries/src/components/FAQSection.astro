@@ -1,45 +1,15 @@
 ---
 // FAQSection.astro
-
-const faqs = [
-  {
-    q: "What industries does Bin Naeem Industries operate in?",
-    a: "Bin Naeem Industries is a diversified industrial conglomerate with operations across Industrial Manufacturing, Flexible Packaging & Logistics, Consumer Retail Brands, and Construction & Infrastructure. Each vertical operates as a focused business unit under a unified strategic framework."
-  },
-  {
-    q: "Where are Bin Naeem Industries' operations located?",
-    a: "Our operations are headquartered in Pakistan with a robust distribution network spanning the Middle East, South Asia, and international export markets. We are actively expanding our global footprint through strategic partnerships and logistics investments."
-  },
-  {
-    q: "How can I partner with or supply to Bin Naeem Industries?",
-    a: "We welcome inquiries from suppliers, logistics providers, and strategic partners. You can reach out directly through our Group Inquiry form or contact our business development office. We evaluate all partnership proposals on the basis of quality, capacity, and strategic alignment."
-  },
-  {
-    q: "What is Bin Naeem Industries' approach to sustainability?",
-    a: "Sustainability is embedded in our operational DNA. We invest in eco-industrial practices, green supply chain systems, and biodegradable packaging materials. Our ESG commitment ensures that growth is delivered responsibly — for our stakeholders and the environment."
-  },
-  {
-    q: "Does Bin Naeem Industries offer group-level investment opportunities?",
-    a: "Yes. As we continue expanding across industrial verticals, we actively explore joint ventures and investment partnerships. We encourage qualified investors and institutions to connect with us directly to discuss group-level opportunities."
-  },
-  {
-    q: "How is quality assured across your manufacturing operations?",
-    a: "Quality assurance is governed by international standards across all production facilities. We deploy end-to-end quality control systems, from raw material intake to final distribution, ensuring that every product that leaves our facilities meets the highest benchmarks."
-  }
-];
+import { faqs } from '../data/siteContent';
 ---
 
 <section id="faqs" data-theme="light" class="relative bg-white overflow-hidden py-24 md:py-36">
-  
-  <!-- Subtle Grid Pattern -->
-  <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#111827 1px, transparent 1px), linear-gradient(90deg, #111827 1px, transparent 1px); background-size: 60px 60px;"></div>
-
   <div class="container-custom relative z-10">
     
     <!-- Header -->
     <div class="max-w-3xl mb-16 md:mb-20" data-reveal-faq-header>
-      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#111827]/5 text-[10px] font-black tracking-widest text-[#111827]/40 uppercase border border-[#111827]/10 mb-6">
-        <span class="text-orange-500 text-lg">✦</span>
+      <div class="section-chip mb-6">
+        <span class="section-chip-dot"></span>
         Frequently Asked
       </div>
       <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter uppercase stagger-faq-header">

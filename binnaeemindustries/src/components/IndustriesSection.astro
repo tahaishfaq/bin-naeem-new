@@ -1,55 +1,22 @@
 ---
-const industries = [
-  {
-    step: "01",
-    title: "Industrial Manufacturing",
-    description: "Implementing advanced production techniques for scalable growth and industrial efficiency.",
-    color: "#F97316", // Orange
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
-  },
-  {
-    step: "02",
-    title: "Packaging & Logistics",
-    description: "Optimizing supply chain efficiency through innovative flexible packaging solutions.",
-    color: "#3B82F6", // Blue
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`
-  },
-  {
-    step: "03",
-    title: "Consumer Retail Brands",
-    description: "Building strong brand presence and distribution networks in global consumer markets.",
-    color: "#F97316", // Orange
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`
-  },
-  {
-    step: "04",
-    title: "Construction & Infrastructure",
-    description: "Developing world-class architectural and large-scale infrastructure projects.",
-    color: "#3B82F6", // Blue
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="10" height="14" rx="2" ry="2"></rect><path d="M12 21V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v18"></path><path d="M3 12h8"></path><path d="M3 16h8"></path><path d="M12 7h10"></path><path d="M12 11h10"></path></svg>`
-  }
-];
+import { industries } from '../data/siteContent';
 ---
 
 <section id="industries" data-theme="light" class="relative bg-white overflow-hidden py-8 md:py-16 border-t border-gray-50">
-  
-  <!-- Signature Industrial Grid / Blueprint Pattern (Light) -->
-  <div class="absolute inset-0 z-0 opacity-[0.05] pointer-events-none" style="background-image: linear-gradient(#111827 1.5px, transparent 1.5px), linear-gradient(90deg, #111827 1.5px, transparent 1.5px); background-size: 60px 60px;"></div>
-  
   <div class="container-custom relative z-10">
     <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
       
       <!-- Left Column: Sticky Narrative -->
       <div class="lg:w-[45%] lg:sticky lg:top-40 lg:h-fit space-y-8" data-reveal-industries-text>
         <div class="space-y-6">
-          <div class="inline-flex items-center gap-3">
-             <span class="text-orange-500 text-lg">✦</span>
-             <span class="text-[11px] font-black tracking-[0.4em] text-[#111827]/40 uppercase">Working Process</span>
+          <div class="section-chip">
+             <span class="section-chip-dot"></span>
+             <span>Working Process</span>
           </div>
 
           <h2 class="text-5xl lg:text-7xl font-extrabold leading-[1] text-[#111827] tracking-tighter uppercase stagger-item">
             Shaping the <span class="text-blue-600">Future</span> <br/>
-            Through <span class="text-orange-600">Innovation</span>
+            Through <span class="text-blue-600">Innovation</span>
           </h2>
           
           <p class="text-lg text-gray-400 font-light leading-relaxed max-w-lg stagger-item">
@@ -69,10 +36,7 @@ const industries = [
               <div 
                 class="step-badge-outer shrink-0 flex flex-col items-center justify-center w-14 md:w-20 h-24 md:h-32 rounded-[1.5rem] md:rounded-[2rem] bg-white border border-[#111827]/10 shadow-sm transition-all duration-700 group-hover:scale-105 group-hover:border-blue-500/20 group-hover:shadow-xl"
               >
-                <div 
-                  class="flex flex-col items-center justify-center"
-                  style={`color: ${item.color === '#F97316' ? '#F97316' : '#3B82F6'}`}
-                >
+                <div class="flex flex-col items-center justify-center" style={`color: ${item.color}`}>
                   <span class="text-[8px] opacity-40 uppercase font-black vertical-text mb-1 tracking-widest">Step</span>
                   <span class="text-2xl md:text-3xl font-black">{item.step}</span>
                 </div>
@@ -96,8 +60,28 @@ const industries = [
               </div>
             </div>
 
-            <!-- Visual Vertical Connection -->
-             <div class="absolute left-[27px] md:left-[39px] top-[100px] md:top-[130px] bottom-0 w-[1px] bg-[#111827]/5 group-last:hidden"></div>
+            <!-- Curved Connector -->
+            {idx < industries.length - 1 && (
+              <div class="absolute left-[24px] md:left-[34px] top-[98px] md:top-[130px] h-[88px] md:h-[112px] w-[92px] md:w-[124px] pointer-events-none">
+                <svg viewBox="0 0 124 112" class="w-full h-full overflow-visible" aria-hidden="true">
+                  <defs>
+                    <linearGradient id={`curve-gradient-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="rgba(37,99,235,0.15)" />
+                      <stop offset="50%" stop-color="rgba(37,99,235,0.35)" />
+                      <stop offset="100%" stop-color="rgba(17,24,39,0.12)" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M6 6 C 78 24, 78 88, 6 106"
+                    fill="none"
+                    stroke={`url(#curve-gradient-${idx})`}
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    class="step-connector-path"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -119,6 +103,17 @@ const industries = [
 
   @keyframes slideLine {
     to { transform: translateX(100%); }
+  }
+
+  .step-connector-path {
+    stroke-dasharray: 5 9;
+    animation: connector-flow 8s linear infinite;
+  }
+
+  @keyframes connector-flow {
+    to {
+      stroke-dashoffset: -84;
+    }
   }
 
   /* Ensure initial visibility */

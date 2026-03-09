@@ -22,10 +22,10 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
       <!-- Desktop Navigation Links: Improved hover UX -->
       <nav class="hidden md:flex items-center gap-1">
         {[
-          { label: 'About', href: '#about' },
-          { label: 'Companies', href: '#companies' },
-          { label: 'Industries', href: '#industries' },
-          { label: 'Contact', href: '#contact' }
+          { label: 'About', href: '/#about' },
+          { label: 'Companies', href: '/#companies' },
+          { label: 'Industries', href: '/#industries' },
+          { label: 'Contact', href: '/#contact' }
         ].map((link) => (
           <a 
             href={link.href} 
@@ -41,7 +41,7 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
       <!-- Desktop CTA & Mobile Toggle: High contrast & Hover effects -->
       <div class="flex items-center gap-2">
         <div class="hidden sm:flex">
-          <a id="nav-cta" href="#contact" class="group/cta relative bg-white text-[#111827] px-7 py-2 rounded-full text-[9px] font-extrabold uppercase tracking-widest transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] active:translate-y-0 active:scale-95 shadow-md flex items-center gap-3">
+          <a id="nav-cta" href="/#contact" class="group/cta relative bg-white text-[#111827] px-7 py-2 rounded-full text-[9px] font-extrabold uppercase tracking-widest transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] active:translate-y-0 active:scale-95 shadow-md flex items-center gap-3">
             <span class="relative z-10 transition-transform duration-500 group-hover/cta:-translate-x-0.5">Group Inquiry</span>
             <div class="w-7 h-7 rounded-full bg-[#111827] text-white flex items-center justify-center transition-all duration-500 group-hover/cta:bg-[#111827] group-hover/cta:scale-110">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-500 group-hover/cta:rotate-45"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
@@ -65,10 +65,10 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
   <div id="mobile-menu" class="absolute top-[calc(100%+0.5rem)] left-4 right-4 bg-[#111827]/98 backdrop-blur-3xl border border-white/5 rounded-3xl p-8 shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-500 z-40 md:hidden">
     <nav class="flex flex-col gap-5">
       {[
-        { label: 'About', href: '#about' },
-        { label: 'Companies', href: '#companies' },
-        { label: 'Industries', href: '#industries' },
-        { label: 'Contact', href: '#contact' }
+        { label: 'About', href: '/#about' },
+        { label: 'Companies', href: '/#companies' },
+        { label: 'Industries', href: '/#industries' },
+        { label: 'Contact', href: '/#contact' }
       ].map((link) => (
         <a 
           href={link.href} 
@@ -78,7 +78,7 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       ))}
-      <a href="#contact" class="mt-4 bg-white text-[#111827] py-5 rounded-2xl text-center font-black uppercase tracking-[0.2em] text-[10px] shadow-xl">
+      <a href="/#contact" class="mt-4 bg-white text-[#111827] py-5 rounded-2xl text-center font-black uppercase tracking-[0.2em] text-[10px] shadow-xl">
         Group Inquiry
       </a>
     </nav>
@@ -134,16 +134,30 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
   gsap.registerPlugin(ScrollTrigger);
 
   function initNav() {
+    const cleanupKey = '__bniHeaderCleanup';
+    const previousCleanup = (window as any)[cleanupKey];
+    if (typeof previousCleanup === 'function') previousCleanup();
+
     const navPill = document.getElementById('nav-pill');
     const mainNav = document.getElementById('main-nav');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
     const themeSections = document.querySelectorAll('[data-theme]');
-    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const localTriggers: ScrollTrigger[] = [];
+
     if (!navPill || !mainNav) return;
 
     // Helper functions for theme switching
     const setNavLight = () => {
+      if (prefersReducedMotion) {
+        navPill.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+        navPill.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        navPill.style.width = '100%';
+        mainNav.classList.remove('nav-scrolled');
+        return;
+      }
+
       gsap.to(navPill, {
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
         borderColor: 'rgba(255, 255, 255, 0.1)',
@@ -159,6 +173,14 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
     };
 
     const setNavDark = () => {
+      if (prefersReducedMotion) {
+        navPill.style.backgroundColor = '#111827';
+        navPill.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+        navPill.style.width = '95%';
+        mainNav.classList.add('nav-scrolled');
+        return;
+      }
+
       gsap.to(navPill, {
         backgroundColor: '#111827',
         borderColor: 'rgba(255, 255, 255, 0.05)',
@@ -195,7 +217,7 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
     themeSections.forEach((section) => {
       const theme = section.getAttribute('data-theme');
       
-      ScrollTrigger.create({
+      const trigger = ScrollTrigger.create({
         trigger: section,
         start: "top 120px", // Trigger earlier to catch the nav
         end: "bottom 80px",
@@ -205,36 +227,50 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
           if (self.isActive) theme === 'dark' ? setNavLight() : setNavDark();
         }
       });
+      localTriggers.push(trigger);
     });
 
     // Mobile Menu Toggle
+    const onMobileToggle = () => {
+      mainNav.classList.toggle('menu-open');
+    };
     if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('menu-open');
-      });
+      mobileMenuToggle.addEventListener('click', onMobileToggle);
     }
 
     // Close menu on link click
+    const onMobileLinkClick = () => {
+      mainNav.classList.remove('menu-open');
+    };
     mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('menu-open');
-      });
+      link.addEventListener('click', onMobileLinkClick);
     });
 
     // Close menu on resize
-    window.addEventListener('resize', () => {
+    const onResize = () => {
       if (window.innerWidth >= 768) {
         mainNav.classList.remove('menu-open');
       }
-    });
+    };
+    window.addEventListener('resize', onResize);
 
     // Close menu on outside click
-    document.addEventListener('click', (e) => {
+    const onDocumentClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!mainNav.contains(target) && mainNav.classList.contains('menu-open')) {
         mainNav.classList.remove('menu-open');
       }
-    });
+    };
+    document.addEventListener('click', onDocumentClick);
+
+    (window as any)[cleanupKey] = () => {
+      window.removeEventListener('scroll', checkInitialTheme);
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('click', onDocumentClick);
+      if (mobileMenuToggle) mobileMenuToggle.removeEventListener('click', onMobileToggle);
+      mobileLinks.forEach((link) => link.removeEventListener('click', onMobileLinkClick));
+      localTriggers.forEach((trigger) => trigger.kill());
+    };
   }
 
   initNav();

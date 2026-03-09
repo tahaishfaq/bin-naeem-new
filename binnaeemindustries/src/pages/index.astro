@@ -7,15 +7,18 @@ import CompaniesGrid from '../components/CompaniesGrid.astro';
 import IndustriesSection from '../components/IndustriesSection.astro';
 import Leadership from '../components/Leadership.astro';
 import Sustainability from '../components/Sustainability.astro';
-import NewsSection from '../components/NewsSection.astro';
+// import NewsSection from '../components/NewsSection.astro';
 import FAQSection from '../components/FAQSection.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
-// import CapabilitiesSection from '../components/CapabilitiesSection.astro';
-import CTASection from '../components/CTASection.astro';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import ContactFormSection from '../components/ContactFormSection.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Bin Naeem Industries | Powering Industries, Building the Future.">
+<Layout
+	title="Bin Naeem Industries | Powering Industries, Building the Future."
+	description="Bin Naeem Industries is a diversified industrial group in Pakistan spanning manufacturing, logistics, infrastructure, and sustainable growth."
+>
 	<Header />
 	<main>
 		<HeroSection />
@@ -24,11 +27,11 @@ import Footer from '../components/Footer.astro';
 		<IndustriesSection />
 		<Leadership />
 		<Sustainability />
-		<NewsSection />
-		<FAQSection />
+		<!-- <NewsSection /> -->
 		<TestimonialsSection />
-		<!-- <CapabilitiesSection /> -->
-		<CTASection />
+		<FAQSection />
+		<NewsletterSection />
+		<ContactFormSection />
 	</main>
 	<Footer />
 </Layout>

@@ -1,105 +1,87 @@
 ---
-// TestimonialsSection.astro
+import { testimonials } from '../data/siteContent';
 
-const testimonials = [
-  {
-    quote: "Partnering with Bin Naeem Industries transformed our packaging supply chain. Their commitment to quality and delivery timelines is genuinely unmatched in the region.",
-    name: "Ahmed Al-Rashidi",
-    role: "Director of Operations",
-    company: "Gulf Commodities Group",
-    initials: "AR"
-  },
-  {
-    quote: "Bin Naeem's manufacturing division delivered consistently across our most demanding FMCG projects. They scale with you — that's rare to find in industrial partnerships.",
-    name: "Priya Mehta",
-    role: "Supply Chain Manager",
-    company: "Horizon Retail Ltd.",
-    initials: "PM"
-  },
-  {
-    quote: "From construction material supply to on-site logistics coordination, they managed everything with professional precision. A reliable partner for large-scale infrastructure.",
-    name: "Khalid Ibrahim",
-    role: "Project Director",
-    company: "Star Infrastructure Co.",
-    initials: "KI"
-  }
+const columns = [
+  testimonials,
+  [...testimonials].reverse(),
+  [testimonials[1], testimonials[2], testimonials[0]]
 ];
 ---
 
-<section id="testimonials" data-theme="dark" class="relative bg-[#111827] overflow-hidden py-24 md:py-36">
-
-  <!-- Dot Grid texture -->
-  <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
-
-  <!-- Ambient glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[40vh] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-
+<section id="testimonials" data-theme="dark" class="relative dark-premium-bg overflow-hidden py-24 md:py-32">
   <div class="container-custom relative z-10">
-
-    <!-- Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24 space-y-6" data-reveal-testimonials-header>
-      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black tracking-widest text-white/50 uppercase border border-white/10">
-        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+    <div class="text-center max-w-3xl mx-auto mb-14 md:mb-16 space-y-6" data-reveal-testimonials-header>
+      <div class="section-chip-dark mx-auto">
+        <span class="section-chip-dot"></span>
         Client Testimonials
       </div>
-      <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-white tracking-tighter uppercase stagger-testimonial-header">
+      <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.04] text-white tracking-tighter uppercase stagger-testimonial-header">
         Trusted by <span class="text-blue-500">Industry</span> Leaders.
       </h2>
-      <p class="text-lg text-white/40 font-light leading-relaxed stagger-testimonial-header">
-        From FMCG giants to construction conglomerates — our partners trust us to deliver with precision, every time.
+      <p class="text-lg text-white/50 font-light leading-relaxed stagger-testimonial-header">
+        Long-term partners trust our consistency, execution quality, and delivery discipline.
       </p>
     </div>
 
-    <!-- Testimonial Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-reveal-testimonial-cards>
-      {testimonials.map((item, idx) => (
-        <div class="testimonial-card group flex flex-col p-8 md:p-10 rounded-[2rem] bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] hover:border-blue-500/30 hover:-translate-y-2">
-          
-          <!-- Quote Mark -->
-          <div class="text-6xl font-black text-white/10 leading-none mb-6 select-none">"</div>
-          
-          <!-- Quote Text -->
-          <p class="flex-grow text-white/60 text-base font-light leading-relaxed mb-8 group-hover:text-white/80 transition-colors duration-500">
-            {item.quote}
-          </p>
-
-          <!-- Divider -->
-          <div class="w-full h-px bg-white/10 mb-8"></div>
-
-          <!-- Author -->
-          <div class="flex items-center gap-4">
-            <!-- Avatar -->
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0 shadow-lg shadow-blue-900/30">
-              <span class="text-white font-black text-sm tracking-wider">{item.initials}</span>
-            </div>
-            <div>
-              <div class="text-white font-bold text-sm tracking-tight">{item.name}</div>
-              <div class="text-white/40 text-xs font-light mt-0.5">{item.role}</div>
-              <div class="text-blue-500 text-xs font-bold uppercase tracking-widest mt-1">{item.company}</div>
+    <div class="relative testimonial-mask" data-reveal-testimonial-stream>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {columns.map((group, columnIndex) => (
+          <div class="testimonial-column h-[540px] overflow-hidden" style={`--speed:${18 + (columnIndex * 3)}s`}>
+            <div class={`testimonial-track ${columnIndex === 1 ? 'delay-reverse' : ''}`}>
+              {[...group, ...group].map((item) => (
+                <article class="my-4 p-7 rounded-2xl bg-white/[0.04] border border-white/[0.10] backdrop-blur-sm">
+                  <p class="text-white/75 text-base font-light leading-relaxed mb-6">{item.quote}</p>
+                  <div class="flex items-center gap-3 pt-5 border-t border-white/10">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shrink-0">
+                      <span class="text-white font-black text-xs tracking-wider">{item.initials}</span>
+                    </div>
+                    <div>
+                      <div class="text-white font-semibold text-sm tracking-tight">{item.name}</div>
+                      <div class="text-white/45 text-xs">{item.role}</div>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
-
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-
-    <!-- Trust bar -->
-    <div class="mt-16 md:mt-24 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-40" data-reveal-trust-bar>
-      {[
-        { value: "100+", label: "Corporate Clients" },
-        { value: "12+", label: "Years of Trust" },
-        { value: "4", label: "Business Verticals" },
-        { value: "25+", label: "Countries Served" },
-      ].map((s) => (
-        <div class="text-center">
-          <div class="text-4xl font-black text-white tracking-tighter">{s.value}</div>
-          <div class="text-xs text-white/60 uppercase font-bold tracking-widest mt-1">{s.label}</div>
-        </div>
-      ))}
-    </div>
-
   </div>
 </section>
+
+<style>
+  .testimonial-mask {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  .testimonial-track {
+    display: flex;
+    flex-direction: column;
+    animation: testimonials-up var(--speed) linear infinite;
+  }
+
+  .delay-reverse {
+    animation-direction: reverse;
+    animation-duration: calc(var(--speed) + 3s);
+  }
+
+  @keyframes testimonials-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-track {
+      animation: none;
+    }
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
@@ -112,27 +94,31 @@ const testimonials = [
     if (!section) return;
 
     gsap.from('.stagger-testimonial-header', {
-      y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
-      scrollTrigger: { trigger: '[data-reveal-testimonials-header]', start: "top 80%" }
+      y: 24,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '[data-reveal-testimonials-header]', start: 'top 82%' }
     });
 
-    gsap.from('.testimonial-card', {
-      y: 50, opacity: 0, duration: 0.9, stagger: 0.15, ease: "power3.out",
-      scrollTrigger: { trigger: '[data-reveal-testimonial-cards]', start: "top 85%" }
-    });
-
-    gsap.from('[data-reveal-trust-bar] > div', {
-      y: 20, opacity: 0, duration: 0.6, stagger: 0.1, ease: "power2.out",
-      scrollTrigger: { trigger: '[data-reveal-trust-bar]', start: "top 90%" }
+    gsap.from('.testimonial-column', {
+      y: 24,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '[data-reveal-testimonial-stream]', start: 'top 85%' }
     });
   }
 
-  const runInit = () => setTimeout(initTestimonials, 200);
+  const runInit = () => setTimeout(initTestimonials, 180);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', runInit);
   } else {
     runInit();
   }
+
   document.addEventListener('astro:after-swap', runInit);
 </script>

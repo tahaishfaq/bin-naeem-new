@@ -1,76 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-import binNaeemLogo from '../assets/bin-naeem-logos/bin-naeem.PNG';
-import naeemPackagesLogo from '../assets/bin-naeem-logos/naeem-packages.PNG';
-import hanplasLogo from '../assets/bin-naeem-logos/hanplas.PNG';
-import boxPackLogo from '../assets/bin-naeem-logos/box-pack.PNG';
-import mondsubLogo from '../assets/bin-naeem-logos/mondsub.PNG';
-import pinatasLogo from '../assets/bin-naeem-logos/pinatas.PNG';
-import nsBuildersLogo from '../assets/bin-naeem-logos/ns-builders.PNG';
-
-const companies = [
-  {
-    name: "Bin Naeem Industries",
-    industry: "Holding Company",
-    description: "We deliver excellence and innovation across industries, offering top-quality solutions from packaging to skincare, machinery, and beyond.",
-    logo: binNaeemLogo,
-    keywords: "Leadership • Innovation • Excellence"
-  },
-  {
-    name: "Naeem Packages",
-    industry: "Printing & Packaging",
-    description: "Experts in flexible printing and packaging, offering premium solutions for various industries.",
-    logo: naeemPackagesLogo,
-    keywords: "Flexible Printing • Premium Solutions"
-  },
-  {
-    name: "Hanplas Machinery",
-    industry: "Machinery Manufacturing",
-    description: "China's leading packaging machinery manufacturer, providing state-of-the-art equipment to streamline production.",
-    logo: hanplasLogo,
-    keywords: "State-of-the-art • Streamlined Production"
-  },
-  {
-    name: "Box Pack",
-    industry: "Corrugation Solutions",
-    description: "A reliable corrugation company delivering durable and innovative carton packaging solutions.",
-    logo: boxPackLogo,
-    keywords: "Durable • Innovative • Reliable"
-  },
-  {
-    name: "Mondsub",
-    industry: "Skincare & Beauty",
-    description: "A skincare brand offering advanced beauty and self-care products.",
-    logo: mondsubLogo,
-    keywords: "Advanced Beauty • Self-care"
-  },
-  {
-    name: "House of Pinatas",
-    industry: "Creative & Events",
-    description: "A creative company specializing in customizable pinatas to make every celebration unique.",
-    logo: pinatasLogo,
-    keywords: "Customizable • Creative • Unique"
-  },
-  {
-    name: "NS Builders",
-    industry: "Construction",
-    description: "Every project is a commitment to excellence through selective work and expert craftsmanship.",
-    logo: nsBuildersLogo,
-    keywords: "Excellence • Craftsmanship"
-  }
-];
+import { companies } from '../data/siteContent';
 ---
 
 <section id="companies" data-theme="dark" class="relative overflow-hidden bg-white">
   <!-- Horizontal Scroll Container -->
-  <div class="section-container bg-[#111827]">
+  <div class="section-container dark-premium-bg">
     <div class="h-screen flex items-center overflow-hidden pt-20">
       
       <!-- Static Content (Left Side) -->
       <div class="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 pointer-events-none">
-        <div class="lg:col-span-4 space-y-6 pointer-events-auto bg-[#111827]/80 backdrop-blur-md p-8 lg:p-0 rounded-2xl lg:rounded-none">
-          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black tracking-widest text-white/60 uppercase border border-white/10">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+        <div class="lg:col-span-4 space-y-6 pointer-events-auto p-8 lg:p-0">
+          <div class="section-chip-dark">
+            <span class="section-chip-dot"></span>
             OUR COMPANIES
           </div>
           <h2 class="text-4xl lg:text-7xl font-black text-white leading-tight tracking-tight uppercase">
@@ -148,10 +90,16 @@ const companies = [
   gsap.registerPlugin(ScrollTrigger);
 
   function initVerticals() {
+    const cleanupKey = '__bniCompaniesCleanup';
+    const previousCleanup = (window as any)[cleanupKey];
+    if (typeof previousCleanup === 'function') previousCleanup();
+
     const wrapper = document.querySelector('.horizontal-scroll-wrapper');
     const cards = document.querySelectorAll('.vertical-card');
     const container = document.querySelector('.section-container');
     const progress = document.getElementById('verticals-progress');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cardTriggers: ScrollTrigger[] = [];
 
     if (!wrapper || !container) return;
 
@@ -160,7 +108,7 @@ const companies = [
       scrollTrigger: {
         trigger: container,
         pin: true,
-        scrub: 1,
+        scrub: prefersReducedMotion ? false : 1,
         start: "top top",
         end: () => `+=${wrapper.scrollWidth}`,
         invalidateOnRefresh: true,
@@ -180,7 +128,7 @@ const companies = [
 
     // In-card staggering
     cards.forEach((card) => {
-      gsap.from(card, {
+      const tween = gsap.from(card, {
         opacity: 0,
         x: 100,
         duration: 0.8,
@@ -192,17 +140,23 @@ const companies = [
           toggleActions: "play none none reverse"
         }
       });
+      if (tween.scrollTrigger) cardTriggers.push(tween.scrollTrigger);
     });
+
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', onResize);
+
+    (window as any)[cleanupKey] = () => {
+      window.removeEventListener('resize', onResize);
+      cardTriggers.forEach((trigger) => trigger.kill());
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
   }
 
   // Handle both initial load and Astro transitions
   initVerticals();
   document.addEventListener('astro:after-swap', initVerticals);
-  
-  // Re-init on resize to fix calculations
-  window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
-  });
 </script>
 
 <style>
