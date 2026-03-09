@@ -1,25 +1,47 @@
 ---
+import { Image } from 'astro:assets';
+import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="dark-premium-bg text-white pt-20 pb-10 border-t border-white/10">
   <div class="container-custom space-y-14">
-    <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 md:p-10 flex flex-col lg:flex-row gap-8 lg:items-center lg:justify-between">
+    <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 md:p-10 flex flex-col lg:flex-row gap-8 lg:items-end lg:justify-between">
       <div class="space-y-3 max-w-2xl">
         <p class="text-xs tracking-[0.3em] uppercase text-blue-300">Bin Naeem Industries</p>
         <h4 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">Building Industrial Value Across Sectors</h4>
         <p class="text-white/60">Manufacturing, logistics, infrastructure, and portfolio operations under one disciplined group strategy.</p>
       </div>
-      <a href="/#contact" class="inline-flex items-center justify-center rounded-2xl bg-white text-[#111827] px-8 py-4 font-bold tracking-wide hover:bg-blue-100 transition-colors">Start a Conversation</a>
+
+      <div class="w-full lg:w-auto lg:min-w-[520px] space-y-3">
+        <p class="text-[11px] tracking-[0.25em] uppercase text-white/50 font-bold">Newsletter</p>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            placeholder="Enter your business email"
+            class="w-full sm:flex-1 rounded-2xl border border-white/20 bg-white/8 px-5 py-3.5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+          />
+          <button type="submit" class="inline-flex items-center justify-center rounded-2xl bg-white text-[#111827] px-7 py-3.5 font-bold tracking-wide hover:bg-blue-100 transition-colors">
+            Subscribe
+          </button>
+        </form>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-      <div>
-        <a href="/" class="text-xl font-bold tracking-tight">BIN NAEEM <span class="font-normal text-white/50">INDUSTRIES</span></a>
-        <p class="mt-4 text-white/55 text-sm leading-relaxed">A diversified holding company operating with a long-term industrial vision.</p>
+      <div class=""> 
+        <a href="/" class="flex items-start">
+          <Image
+            src={logoImg}
+            alt="Bin Naeem Industries Logo"
+            class="h-16 md:h-20 w-full object-cover object-center"
+          />
+        </a>
+        <p class="mt-2 pl-16 text-white/55 text-sm leading-relaxed">A diversified holding company operating with a long-term industrial vision.</p>
       </div>
 
-      <div>
+      <div class="pl-10">
         <h5 class="text-xs font-bold uppercase tracking-[0.25em] text-white/50 mb-4">Explore</h5>
         <ul class="space-y-3 text-sm text-white/70">
           <li><a href="/#about" class="hover:text-white">About</a></li>
