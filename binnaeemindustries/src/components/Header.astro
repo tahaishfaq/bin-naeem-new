@@ -174,23 +174,35 @@ import logoImg from '../assets/bin-naeem-logos/bin-naeem.PNG';
     };
 
     // Detect initial theme or default to dark (if scrolled) or light (if at top)
-    const initialTheme = themeSections[0]?.getAttribute('data-theme') || 'dark';
-    if (window.scrollY < 50) {
-      setNavLight();
-    }
+    const checkInitialTheme = () => {
+      const scrollPos = window.scrollY + 100;
+      let currentTheme = 'dark';
+      
+      themeSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          currentTheme = section.getAttribute('data-theme') || 'dark';
+        }
+      });
+      
+      currentTheme === 'dark' ? setNavLight() : setNavDark();
+    };
 
-    // Create ScrollTriggers for each theme section
+    checkInitialTheme();
+    window.addEventListener('scroll', checkInitialTheme, { passive: true });
+
+    // Create ScrollTriggers for each theme section with more robust detection
     themeSections.forEach((section) => {
       const theme = section.getAttribute('data-theme');
       
       ScrollTrigger.create({
         trigger: section,
-        start: "top 60px", 
-        end: "bottom 60px",
+        start: "top 120px", // Trigger earlier to catch the nav
+        end: "bottom 80px",
+        onEnter: () => theme === 'dark' ? setNavLight() : setNavDark(),
+        onEnterBack: () => theme === 'dark' ? setNavLight() : setNavDark(),
         onToggle: (self) => {
-          if (self.isActive) {
-            theme === 'dark' ? setNavLight() : setNavDark();
-          }
+          if (self.isActive) theme === 'dark' ? setNavLight() : setNavDark();
         }
       });
     });

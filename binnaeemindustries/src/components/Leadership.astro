@@ -1,0 +1,112 @@
+---
+// Leadership.astro
+---
+
+<section id="leadership" data-theme="dark" class="relative bg-[#0d121c] overflow-hidden py-24 md:py-40">
+  
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-transparent"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#111827] to-transparent"></div>
+  </div>
+
+  <div class="container-custom relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      
+      <!-- Left: Image / Portrait -->
+      <div class="w-full lg:w-[45%]" data-reveal-leadership-img>
+        <div class="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden rounded-tr-[6rem] border border-white/10 group">
+          <!-- Placeholder for Leadership Image -->
+          <div class="absolute inset-0 bg-[#1a2333] transition-transform duration-1000 group-hover:scale-105">
+            <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+             <!-- Stylized placeholder silhouette -->
+             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-3/4 bg-white/5 rounded-t-[10rem] blur-xl"></div>
+          </div>
+
+          <!-- Decorative overlays -->
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0d121c] to-transparent"></div>
+          <div class="absolute top-8 left-8 w-20 h-20 border-t-2 border-l-2 border-white/20"></div>
+          <div class="absolute bottom-8 right-8 w-20 h-20 border-b-2 border-r-2 border-blue-500/40"></div>
+        </div>
+      </div>
+
+      <!-- Right: Vision & Quote -->
+      <div class="w-full lg:w-[55%] space-y-10" data-reveal-leadership-text>
+        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black tracking-widest text-white/60 uppercase border border-white/10">
+           <span class="text-orange-500 text-lg">✦</span>
+           Leadership & Vision
+        </div>
+
+        <h3 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tighter leading-[1.1] stagger-lead-text">
+          "Building a legacy of <span class="italic font-light text-blue-400">industrial excellence</span> and sustainable growth."
+        </h3>
+
+        <div class="space-y-6 pt-6 border-t border-white/10 stagger-lead-text">
+          <p class="text-lg text-white/50 font-light leading-relaxed">
+            Since our inception, Bin Naeem Industries has been driven by a singular vision: to unify diverse industrial sectors under a standard of uncompromising quality. We invest not just in businesses, but in the infrastructure of tomorrow.
+          </p>
+          <div class="flex items-center justify-between pt-6">
+             <div>
+               <div class="text-white font-black uppercase tracking-widest text-lg">Haji Muhammad Naeem</div>
+               <div class="text-blue-500 text-sm font-bold tracking-widest uppercase mt-1">Founding Chairman</div>
+             </div>
+             
+             <!-- Abstract signature -->
+             <div class="opacity-30">
+               <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 20Q20 5 30 25T50 15T70 30T90 10T110 20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+               </svg>
+             </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initLeadership() {
+    const section = document.getElementById('leadership');
+    if (!section) return;
+
+    gsap.from('[data-reveal-leadership-img]', {
+      x: -50,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 70%",
+      }
+    });
+
+    gsap.from('.stagger-lead-text', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: '[data-reveal-leadership-text]',
+        start: "top 80%",
+      }
+    });
+  }
+
+  // Handle both initial load and Astro transitions
+  const runInit = () => setTimeout(initLeadership, 200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+  } else {
+    runInit();
+  }
+  
+  document.addEventListener('astro:after-swap', runInit);
+</script>

@@ -1,0 +1,140 @@
+---
+// NewsSection.astro
+
+const news = [
+  {
+    category: "Corporate",
+    date: "March 15, 2026",
+    title: "Bin Naeem Industries Expands Sustainable Packaging Operations",
+    image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&auto=format&fit=crop&q=80" // abstract packaging/industrial
+  },
+  {
+    category: "Global Reach",
+    date: "February 28, 2026",
+    title: "New Strategic Logistics Hub Opens in the Middle East",
+    image: "https://images.unsplash.com/photo-1506469717960-433cebe3f181?w=800&auto=format&fit=crop&q=80" // abstract shipping container/port
+  },
+  {
+    category: "Innovation",
+    date: "February 10, 2026",
+    title: "Investment in Next-Gen Intelligent Manufacturing Technologies",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80" // abstract tech/robotic arm
+  }
+];
+---
+
+<section id="news" data-theme="light" class="relative bg-[#F5F5F3] overflow-hidden py-24 md:py-32">
+  
+  <div class="container-custom relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24" data-reveal-news-header>
+      <div class="space-y-6 max-w-2xl">
+        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white text-[10px] font-black tracking-widest text-[#111827] uppercase border border-[#111827]/10 shadow-sm">
+           Latest Updates
+        </div>
+        <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter uppercase stagger-news-header">
+          News & <br/> <span class="text-blue-600">Insights.</span>
+        </h2>
+      </div>
+      
+      <div class="shrink-0 stagger-news-header">
+        <a href="#all-news" class="inline-flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-[#111827] group">
+          <span>View All Articles</span>
+          <div class="w-12 h-12 rounded-full border border-[#111827]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#111827] group-hover:text-white">
+             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- News Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-reveal-news-cards>
+      {news.map((item) => (
+        <article class="news-card group flex flex-col bg-white rounded-[2rem] overflow-hidden border border-[#111827]/5 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+          
+          <!-- Image Container with Hover Zoom -->
+          <div class="relative h-64 overflow-hidden bg-gray-100">
+            <div class="absolute inset-0 bg-gray-900/10 group-hover:bg-transparent transition-colors z-10"></div>
+            <img 
+              src={item.image} 
+              alt={item.title}
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              loading="lazy"
+            />
+            
+            <div class="absolute top-6 left-6 z-20">
+              <span class="px-4 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest text-[#111827] uppercase shadow-sm">
+                {item.category}
+              </span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-8 flex flex-col flex-grow">
+            <time class="text-xs font-bold tracking-widest text-blue-600 uppercase mb-4 block">
+              {item.date}
+            </time>
+            
+            <h3 class="text-xl md:text-2xl font-black text-[#111827] leading-tight tracking-tight mb-6 group-hover:text-blue-600 transition-colors duration-300">
+              <a href="#" class="focus:outline-none">
+                <span class="absolute inset-0" aria-hidden="true"></span>
+                {item.title}
+              </a>
+            </h3>
+
+            <div class="mt-auto pt-6 border-t border-gray-100 flex items-center justify-between text-gray-400 group-hover:text-[#111827] transition-colors">
+               <span class="text-xs font-bold uppercase tracking-wider">Read Article</span>
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initNews() {
+    const section = document.getElementById('news');
+    if (!section) return;
+
+    gsap.from('.stagger-news-header', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: '[data-reveal-news-header]',
+        start: "top 80%",
+      }
+    });
+
+    gsap.from('.news-card', {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '[data-reveal-news-cards]',
+        start: "top 85%",
+      }
+    });
+  }
+
+  const runInit = () => setTimeout(initNews, 200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+  } else {
+    runInit();
+  }
+  
+  document.addEventListener('astro:after-swap', runInit);
+</script>

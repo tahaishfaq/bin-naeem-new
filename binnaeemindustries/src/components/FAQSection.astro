@@ -1,0 +1,151 @@
+---
+// FAQSection.astro
+
+const faqs = [
+  {
+    q: "What industries does Bin Naeem Industries operate in?",
+    a: "Bin Naeem Industries is a diversified industrial conglomerate with operations across Industrial Manufacturing, Flexible Packaging & Logistics, Consumer Retail Brands, and Construction & Infrastructure. Each vertical operates as a focused business unit under a unified strategic framework."
+  },
+  {
+    q: "Where are Bin Naeem Industries' operations located?",
+    a: "Our operations are headquartered in Pakistan with a robust distribution network spanning the Middle East, South Asia, and international export markets. We are actively expanding our global footprint through strategic partnerships and logistics investments."
+  },
+  {
+    q: "How can I partner with or supply to Bin Naeem Industries?",
+    a: "We welcome inquiries from suppliers, logistics providers, and strategic partners. You can reach out directly through our Group Inquiry form or contact our business development office. We evaluate all partnership proposals on the basis of quality, capacity, and strategic alignment."
+  },
+  {
+    q: "What is Bin Naeem Industries' approach to sustainability?",
+    a: "Sustainability is embedded in our operational DNA. We invest in eco-industrial practices, green supply chain systems, and biodegradable packaging materials. Our ESG commitment ensures that growth is delivered responsibly — for our stakeholders and the environment."
+  },
+  {
+    q: "Does Bin Naeem Industries offer group-level investment opportunities?",
+    a: "Yes. As we continue expanding across industrial verticals, we actively explore joint ventures and investment partnerships. We encourage qualified investors and institutions to connect with us directly to discuss group-level opportunities."
+  },
+  {
+    q: "How is quality assured across your manufacturing operations?",
+    a: "Quality assurance is governed by international standards across all production facilities. We deploy end-to-end quality control systems, from raw material intake to final distribution, ensuring that every product that leaves our facilities meets the highest benchmarks."
+  }
+];
+---
+
+<section id="faqs" data-theme="light" class="relative bg-white overflow-hidden py-24 md:py-36">
+  
+  <!-- Subtle Grid Pattern -->
+  <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#111827 1px, transparent 1px), linear-gradient(90deg, #111827 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="container-custom relative z-10">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-16 md:mb-20" data-reveal-faq-header>
+      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#111827]/5 text-[10px] font-black tracking-widest text-[#111827]/40 uppercase border border-[#111827]/10 mb-6">
+        <span class="text-orange-500 text-lg">✦</span>
+        Frequently Asked
+      </div>
+      <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter uppercase stagger-faq-header">
+        Common <br /> <span class="text-blue-600">Questions.</span>
+      </h2>
+    </div>
+
+    <!-- FAQ Accordions -->
+    <div class="max-w-4xl space-y-3" data-reveal-faq-items>
+      {faqs.map((faq, idx) => (
+        <div class="faq-item group border border-[#111827]/8 rounded-2xl overflow-hidden bg-white hover:border-blue-500/30 transition-colors duration-300">
+          <button
+            class="faq-trigger w-full flex items-center justify-between gap-6 p-6 md:p-8 text-left"
+            data-faq-index={idx}
+            aria-expanded="false"
+          >
+            <div class="flex items-center gap-5">
+              <span class="shrink-0 text-[10px] font-black tracking-widest text-blue-600 opacity-60 font-mono">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <span class="text-lg md:text-xl font-bold text-[#111827] tracking-tight leading-snug group-hover:text-blue-600 transition-colors duration-300">
+                {faq.q}
+              </span>
+            </div>
+            <!-- Icon -->
+            <div class="faq-icon shrink-0 w-9 h-9 rounded-full border border-[#111827]/10 flex items-center justify-center text-[#111827]/40 group-hover:border-blue-500 group-hover:text-blue-500 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12" class="faq-h-line"></line>
+              </svg>
+            </div>
+          </button>
+          <div class="faq-answer overflow-hidden max-h-0 transition-[max-height] duration-500 ease-in-out">
+            <p class="px-6 md:px-8 pb-8 text-gray-500 font-light leading-relaxed text-base max-w-2xl pl-[4.5rem]">
+              {faq.a}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-item.open .faq-icon svg {
+    transform: rotate(45deg);
+  }
+  .faq-item.open .faq-trigger span:last-child {
+    color: #2563EB;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initFAQ() {
+    const section = document.getElementById('faqs');
+    if (!section) return;
+
+    // --- Reveal Animations ---
+    gsap.from('.stagger-faq-header', {
+      y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power2.out",
+      scrollTrigger: { trigger: '[data-reveal-faq-header]', start: "top 80%" }
+    });
+    gsap.from('.faq-item', {
+      y: 20, opacity: 0, duration: 0.6, stagger: 0.08, ease: "power2.out",
+      scrollTrigger: { trigger: '[data-reveal-faq-items]', start: "top 85%" }
+    });
+
+    // --- Accordion Logic ---
+    const triggers = section.querySelectorAll('.faq-trigger');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const answer = item?.querySelector('.faq-answer');
+        const isOpen = item?.classList.contains('open');
+
+        // Close all items
+        section.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('open');
+          const ans = el.querySelector('.faq-answer') as HTMLElement | null;
+          if (ans) ans.style.maxHeight = '0';
+          (el.querySelector('.faq-trigger') as HTMLElement)?.setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen && item && answer) {
+          item.classList.add('open');
+          (answer as HTMLElement).style.maxHeight = (answer as HTMLElement).scrollHeight + 'px';
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  const runInit = () => setTimeout(initFAQ, 200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+  } else {
+    runInit();
+  }
+  document.addEventListener('astro:after-swap', runInit);
+</script>

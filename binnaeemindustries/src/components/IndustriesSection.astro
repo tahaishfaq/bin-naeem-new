@@ -1,84 +1,132 @@
 ---
 const industries = [
   {
+    step: "01",
     title: "Industrial Manufacturing",
-    description: "Implementing advanced production techniques for scalable growth.",
+    description: "Implementing advanced production techniques for scalable growth and industrial efficiency.",
+    color: "#F97316", // Orange
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`
   },
   {
+    step: "02",
     title: "Packaging & Logistics",
-    description: "Optimizing supply chain efficiency through innovative packaging.",
+    description: "Optimizing supply chain efficiency through innovative flexible packaging solutions.",
+    color: "#3B82F6", // Blue
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>`
   },
   {
+    step: "03",
     title: "Consumer Retail Brands",
-    description: "Building strong brand presence in global consumer markets.",
+    description: "Building strong brand presence and distribution networks in global consumer markets.",
+    color: "#F97316", // Orange
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`
   },
   {
+    step: "04",
     title: "Construction & Infrastructure",
-    description: "Developing world-class architectural and infrastructure projects.",
+    description: "Developing world-class architectural and large-scale infrastructure projects.",
+    color: "#3B82F6", // Blue
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="10" height="14" rx="2" ry="2"></rect><path d="M12 21V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v18"></path><path d="M3 12h8"></path><path d="M3 16h8"></path><path d="M12 7h10"></path><path d="M12 11h10"></path></svg>`
   }
 ];
 ---
 
-<section id="industries" data-theme="light" class="relative py-24 md:py-32 overflow-hidden bg-white">
+<section id="industries" data-theme="light" class="relative bg-white overflow-hidden py-8 md:py-16 border-t border-gray-50">
   
-  <!-- Subtle Background Decorative Element -->
-  <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[100px] -z-10 opacity-60"></div>
-
-  <div class="container-custom">
-    <!-- Section Heading -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20 items-end">
-      <div class="lg:col-span-12 space-y-6 text-center" data-reveal-header>
-        <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#111827]/5 text-[10px] font-black tracking-widest text-[#111827] uppercase">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#111827]"></span>
-          EXPERT SECTORS
-        </div>
-        
-        <h2 class="text-4xl lg:text-7xl font-extrabold leading-[1] text-[#111827] tracking-tighter uppercase relative">
-          Sectors and <span class="text-white bg-[#111827] px-4 py-1 rounded-sm -rotate-1 inline-block mt-2">Expertise</span>
-        </h2>
-        
-        <p class="text-lg text-gray-400 font-light leading-relaxed max-w-2xl mx-auto">
-          We focus on high-impact industries where vertical integration and operational excellence create significant competitive advantages.
-        </p>
-      </div>
-    </div>
-
-    <!-- Industries Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {industries.map((item) => (
-        <div 
-          class="industry-card p-10 rounded-[2.5rem] bg-[#F9FAFB] border border-gray-100/50 hover:bg-white hover:border-blue-200 hover:shadow-[0_32px_64px_-16px_rgba(37,99,235,0.1)] transition-all duration-700 group relative overflow-hidden"
-        >
-          <!-- Subtle Card Gradient -->
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-          <div class="relative z-10">
-            <div class="w-16 h-16 rounded-2xl bg-[#111827] text-white flex items-center justify-center mb-10 group-hover:scale-110 group-hover:bg-blue-600 shadow-xl shadow-[#111827]/10 group-hover:shadow-blue-500/20 transition-all duration-500">
-              <Fragment set:html={item.icon} />
-            </div>
-            
-            <h3 class="text-xl font-black text-[#111827] mb-4 tracking-tight uppercase leading-tight group-hover:text-blue-600 transition-colors duration-500">
-              {item.title}
-            </h3>
-            
-            <p class="text-gray-400 text-xs md:text-sm font-medium leading-relaxed mb-8">
-              {item.description}
-            </p>
-
-            <div class="flex items-center gap-2 text-[9px] font-black text-[#111827]/20 uppercase tracking-widest group-hover:text-blue-600/40 transition-colors duration-500">
-               CORE EXPERTISE 
-               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </div>
+  <!-- Signature Industrial Grid / Blueprint Pattern (Light) -->
+  <div class="absolute inset-0 z-0 opacity-[0.05] pointer-events-none" style="background-image: linear-gradient(#111827 1.5px, transparent 1.5px), linear-gradient(90deg, #111827 1.5px, transparent 1.5px); background-size: 60px 60px;"></div>
+  
+  <div class="container-custom relative z-10">
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+      
+      <!-- Left Column: Sticky Narrative -->
+      <div class="lg:w-[45%] lg:sticky lg:top-40 lg:h-fit space-y-8" data-reveal-industries-text>
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-3">
+             <span class="text-orange-500 text-lg">✦</span>
+             <span class="text-[11px] font-black tracking-[0.4em] text-[#111827]/40 uppercase">Working Process</span>
           </div>
+
+          <h2 class="text-5xl lg:text-7xl font-extrabold leading-[1] text-[#111827] tracking-tighter uppercase stagger-item">
+            Shaping the <span class="text-blue-600">Future</span> <br/>
+            Through <span class="text-orange-600">Innovation</span>
+          </h2>
+          
+          <p class="text-lg text-gray-400 font-light leading-relaxed max-w-lg stagger-item">
+            Bin Naeem Industries operates at the intersection of industrial precision and future-ready innovation. 
+            We follow a structured, step-by-step approach to master every sector we touch.
+          </p>
         </div>
-      ))}
+      </div>
+
+      <!-- Right Column: Numbered 'Step' Rows with Glassy Cards -->
+      <div class="lg:w-[55%] space-y-4">
+        {industries.map((item, idx) => (
+          <div class="industry-row group relative pb-8 last:pb-0" data-reveal-industry-row>
+            <div class="flex items-start gap-4 md:gap-8">
+              
+              <!-- Glassy Numbered Badge -->
+              <div 
+                class="step-badge-outer shrink-0 flex flex-col items-center justify-center w-14 md:w-20 h-24 md:h-32 rounded-[1.5rem] md:rounded-[2rem] bg-white border border-[#111827]/10 shadow-sm transition-all duration-700 group-hover:scale-105 group-hover:border-blue-500/20 group-hover:shadow-xl"
+              >
+                <div 
+                  class="flex flex-col items-center justify-center"
+                  style={`color: ${item.color === '#F97316' ? '#F97316' : '#3B82F6'}`}
+                >
+                  <span class="text-[8px] opacity-40 uppercase font-black vertical-text mb-1 tracking-widest">Step</span>
+                  <span class="text-2xl md:text-3xl font-black">{item.step}</span>
+                </div>
+              </div>
+
+              <!-- Content Area (Premium Glassy Card) -->
+              <div class="flex-grow space-y-4 p-6 md:p-8 rounded-[2rem] bg-white border border-[#111827]/5 shadow-sm transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-gray-200/50 group-hover:border-blue-100/50">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xl md:text-3xl font-black text-[#111827] tracking-tight group-hover:text-blue-600 transition-colors duration-500 uppercase leading-none">
+                      {item.title}
+                    </h3>
+                    <div class="text-[#111827]/5 group-hover:text-blue-500/20 transition-colors duration-500">
+                       <Fragment set:html={item.icon} />
+                    </div>
+                  </div>
+                  <p class="text-gray-400 text-xs md:text-sm font-light leading-relaxed max-w-md group-hover:text-[#111827]/70 transition-colors duration-500">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Vertical Connection -->
+             <div class="absolute left-[27px] md:left-[39px] top-[100px] md:top-[130px] bottom-0 w-[1px] bg-[#111827]/5 group-last:hidden"></div>
+          </div>
+        ))}
+      </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  .vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* Connection Line Animation */
+  .industry-row:hover .progress-line {
+    animation: slideLine 1.5s ease-out forwards;
+  }
+
+  @keyframes slideLine {
+    to { transform: translateX(100%); }
+  }
+
+  /* Ensure initial visibility */
+  .industry-row .step-badge-outer,
+  .industry-row .flex-grow {
+    will-change: transform, opacity;
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
@@ -86,39 +134,62 @@ const industries = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  function initIndustries() {
-    const cards = document.querySelectorAll('.industry-card');
-    const header = document.querySelector('[data-reveal-header]');
+  function initLightGlassStep() {
     const section = document.getElementById('industries');
+    const rows = document.querySelectorAll('[data-reveal-industry-row]');
+    const textItems = document.querySelectorAll('.stagger-item');
 
     if (!section) return;
 
-    // Header Reveal
-    gsap.from(header, {
-      y: 30,
+    // Sidebar Text Stagger
+    gsap.from(textItems, {
+      y: 20,
       opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out',
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: "top 85%",
       }
     });
 
-    // Cards Staggered Reveal
-    gsap.from(cards, {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-      }
+    // Sequential Row Reveals - Using fromTo for guaranteed visibility
+    rows.forEach((row, i) => {
+      const badge = row.querySelector('.step-badge-outer');
+      const content = row.querySelector('.flex-grow');
+
+      gsap.fromTo([badge, content], 
+        { 
+          y: 40,
+          autoAlpha: 0 
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 98%",
+            toggleActions: "play none none none",
+            once: true
+          }
+        }
+      );
     });
   }
 
-  initIndustries();
-  document.addEventListener('astro:after-swap', initIndustries);
+  // Handle both initial load and Astro transitions
+  // Added a small delay to ensure ScrollTrigger calculates positions after layout
+  const runInit = () => setTimeout(initLightGlassStep, 200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+  } else {
+    runInit();
+  }
+  
+  document.addEventListener('astro:after-swap', runInit);
 </script>

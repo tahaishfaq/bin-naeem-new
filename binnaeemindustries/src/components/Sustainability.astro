@@ -1,0 +1,124 @@
+---
+// Sustainability.astro
+
+const initiatives = [
+  {
+    title: "Eco-Industrial Parks",
+    description: "Developing self-sustaining manufacturing hubs powered by renewable energy and zero-waste systems.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>` // Abstract eco icon
+  },
+  {
+    title: "Green Supply Chain",
+    description: "Optimizing logistics to minimize carbon footprint across all operational verticals.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>` // Leaf/Route icon
+  },
+  {
+    title: "Sustainable Packaging",
+    description: "Pioneering biodegradable and recyclable materials for global FMCG distribution.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>` // Database/Package recycle icon
+  }
+];
+---
+
+<section id="sustainability" data-theme="light" class="relative bg-[#00A859]/5 overflow-hidden py-20 md:py-32">
+  
+  <div class="absolute inset-0 z-0 bg-white">
+    <!-- Subtle green tint and texture -->
+    <div class="absolute inset-0 bg-gradient-to-b from-white to-[#00A859]/5"></div>
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#00A859 1px, transparent 1px), linear-gradient(90deg, #00A859 1px, transparent 1px); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="container-custom relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      
+      <!-- Left: Narrative -->
+      <div class="space-y-8" data-reveal-sustain-text>
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#00A859]/10 text-[10px] font-black tracking-widest text-[#00A859] uppercase border border-[#00A859]/20">
+             Sustainability & ESG
+          </div>
+
+          <h2 class="text-4xl md:text-6xl font-extrabold leading-[1.1] text-[#111827] tracking-tighter uppercase stagger-sustain-text">
+            Engineering a <br/>
+            <span class="text-[#00A859]">Greener Tomorrow.</span>
+          </h2>
+          
+          <p class="text-lg text-gray-500 font-light leading-relaxed max-w-lg stagger-sustain-text">
+            At Bin Naeem Industries, sustainability is not an afterthought—it's engineered into our core operations. We integrate Environmental, Social, and Governance (ESG) principles across our entire portfolio to create long-term value.
+          </p>
+        </div>
+
+        <div class="pt-6">
+          <a href="#contact" class="inline-flex items-center gap-4 text-sm font-bold uppercase tracking-widest text-[#111827] group stagger-sustain-text">
+            <span>Read our ESG Report</span>
+            <div class="w-10 h-10 rounded-full border border-[#111827]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#111827] group-hover:text-white">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Initiative Cards -->
+      <div class="space-y-6" data-reveal-sustain-cards>
+        {initiatives.map((item, idx) => (
+          <div class="sustain-card group flex items-start gap-6 p-6 md:p-8 rounded-[2rem] bg-white border border-[#00A859]/10 shadow-lg shadow-[#00A859]/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#00A859]/10">
+            <div class="shrink-0 w-14 h-14 rounded-2xl bg-[#00A859]/5 text-[#00A859] flex items-center justify-center group-hover:bg-[#00A859] group-hover:text-white transition-colors duration-500">
+               <Fragment set:html={item.icon} />
+            </div>
+            <div class="space-y-2 pt-1">
+              <h4 class="text-xl font-black text-[#111827] tracking-tight">{item.title}</h4>
+              <p class="text-sm text-gray-500 font-light leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initSustainability() {
+    const section = document.getElementById('sustainability');
+    if (!section) return;
+
+    gsap.from('.stagger-sustain-text', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: '[data-reveal-sustain-text]',
+        start: "top 80%",
+      }
+    });
+
+    gsap.from('.sustain-card', {
+      x: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: '[data-reveal-sustain-cards]',
+        start: "top 85%",
+      }
+    });
+  }
+
+  const runInit = () => setTimeout(initSustainability, 200);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+  } else {
+    runInit();
+  }
+  
+  document.addEventListener('astro:after-swap', runInit);
+</script>
